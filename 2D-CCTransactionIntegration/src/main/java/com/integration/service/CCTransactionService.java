@@ -9,5 +9,5 @@ import com.integration.bean.CCTransaction;
 
 public interface CCTransactionService {
 	public String creditCardTransaction(CCTransaction transaction) throws ClientProtocolException, IOException;
-	public List<CCTransaction> getTransactionDetailsByMarchantTxnId(int marchantId);
+	public CCTransaction getTransactionDetailsByMarchantTxnId(int marchantId);
 }

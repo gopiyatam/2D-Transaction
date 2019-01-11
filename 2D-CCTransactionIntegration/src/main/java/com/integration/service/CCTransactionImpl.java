@@ -68,7 +68,7 @@ public class CCTransactionImpl implements CCTransactionService {
 
 	}
 
-	public List<CCTransaction> getTransactionDetailsByMarchantTxnId(int marchantId) {
+	public CCTransaction getTransactionDetailsByMarchantTxnId(int marchantId) {
 		return dao.getTransactionDetailsByMarchantTxnId(marchantId);
 
 	}

@@ -54,29 +54,11 @@ public class CCTransactionDAOImpl implements CCTransactionDAO {
 				transaction.getMerchant_txnId());
 	}
 
-	public List<CCTransaction> getTransactionDetailsByMarchantTxnId(int marchantId) {
+	public CCTransaction getTransactionDetailsByMarchantTxnId(int marchantId) {
 
 		String sql = "select * from cctransaction where marchantTxnId=?";
-		Object[] inputs = new Object[] { marchantId };
-
-		return jdbcTemplate.query(sql, inputs, new RowMapper<CCTransaction>() {
-			public CCTransaction mapRow(ResultSet rs, int rowNum) throws SQLException {
-				CCTransaction trans = new CCTransaction();
-				trans.setMerchant_txnId(rs.getInt("marchantTxnId"));
-				trans.setFirstname(rs.getString("firstname"));
-				trans.setLastname(rs.getString("lastname"));
-				trans.setCarditCardNumber(rs.getLong("CreditCardNo"));
-				trans.setAmount(rs.getDouble("amount"));
-				trans.setCvv(rs.getInt("CVV"));
-				trans.setExpMonth(rs.getInt("CreditCardExpMonth"));
-				trans.setExpYear(rs.getInt("CreditCardExpYear"));
-				trans.setSupplierTxnId(rs.getLong("suppilerTransactionId"));
-				trans.setStatus(rs.getString("Status"));
-				return trans;
-
-			}
-		});
-
+return jdbcTemplate.queryForObject(sql, new Object[] { marchantId }, new CCTransactionMapper());
+		
 	}
 
 }
